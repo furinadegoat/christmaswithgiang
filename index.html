@@ -45,6 +45,7 @@
         font-size: 18px;
         line-height: 1.7;
         min-height: 130px;
+        white-space: pre-line;
     }
 
     button {
@@ -126,16 +127,20 @@
     <div class="heart-glow">💗</div>
 </div>
 
-<script>
-    /* Typewriter effect */
-    const text = 
-`Giáng Sinh này,
-mình không mong điều gì lớn lao cả.
+<!-- 🎵 NHẠC NỀN -->
+<audio id="bgm" loop>
+    <source src="dangxinh-lowg.mp3" type="audio/mpeg">
+</audio>
 
-Chỉ mong Giang luôn khỏe,
-luôn vui,
-và mỗi khi trời lạnh…
-sẽ có ai đó làm tim Giang ấm lên 💖`;
+<script>
+    /* Typewriter */
+    const text =
+`Giáng Sinh này,
+em tặng chị web này
+tại em muốn tặng chị nhiều cái khác vl
+nhưng chị đéo cho 😭
+
+Chị Giang xinh vui vẻ nhé 💖`;
 
     let i = 0;
     function typeText() {
@@ -147,15 +152,29 @@ sẽ có ai đó làm tim Giang ấm lên 💖`;
     }
     typeText();
 
-    /* Button action */
+    /* Button + Music */
     function showMore() {
         document.getElementById("message").innerHTML =
-        `Thật ra…
-        người đó có thể là mình 💘
+`Thật ra…
+dạo này em đang burnt out
 
-        Không cần Giang trả lời ngay,
-        chỉ mong Giang mỉm cười
-        khi đọc những dòng này.`;
+nên không nhắn tin cho chị nhiều được
+với cả ngại vl nữa
+nên là bỏ quá cho em nha 🥹`;
+
+        fadeInMusic(document.getElementById("bgm"));
+    }
+
+    /* Fade-in music */
+    function fadeInMusic(audio) {
+        audio.volume = 0;
+        audio.play();
+        let v = 0;
+        const fade = setInterval(() => {
+            v += 0.02;
+            audio.volume = Math.min(v, 0.45);
+            if (v >= 0.45) clearInterval(fade);
+        }, 120);
     }
 
     /* Snow */
